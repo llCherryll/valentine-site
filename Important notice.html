@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishad ❤️ Keyuri</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    overflow-x:hidden;
+}
+
+.container{
+    padding:40px 20px;
+}
+
+h1{font-size:34px;}
+p{font-size:18px; max-width:90%; margin:auto;}
+
+img{
+    width:230px;
+    border-radius:20px;
+    margin:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+button{
+    padding:12px 28px;
+    font-size:18px;
+    margin:12px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yes{background:#ff2e63;color:white;}
+#yes:hover{transform:scale(1.1);}
+#no{background:#444;color:white;position:absolute;}
+
+.hidden{display:none;}
+
+.quiz-box{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:20px;
+    margin-top:25px;
+}
+
+@keyframes floatHearts{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-600px);opacity:0;}
+}
+
+.heart{
+    position:fixed;
+    bottom:0;
+    font-size:22px;
+    animation:floatHearts 4s linear infinite;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="loveSong" autoplay loop muted>
+<source src="https://files.catbox.moe/32kkel.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="main">
+
+<h1>Nishad Nayak 💖</h1>
+
+<p>
+From the moment you walked into my life, everything changed.
+You sell boats like a boss, play drums like a rockstar,
+and somehow still manage to be the safest place in my world.
+
+And yes… you were the one who said "I love you" first. 😌❤️
+
+So officially, dramatically, and wholeheartedly…
+Will you be my Valentine?
+</p>
+
+<img src="https://i.postimg.cc/FsPB5d48/IMG-20260110-WA0051.jpg">
+<img src="https://i.postimg.cc/g0MJ3KF3/IMG-20241227-WA0020.jpg">
+
+<br>
+
+<button id="yes" onclick="celebrate()">Yes 💘</button>
+<button id="no" onmouseover="moveButton()">No 😅</button>
+
+</div>
+
+
+<div id="afterYes" class="hidden">
+    <h1>She Said Yes 💍💞</h1>
+    <p>Now let’s see if you remember our love story properly 😏</p>
+
+    <div class="quiz-box">
+        <h3>Where was our first proper date? 🥰</h3>
+        <img src="https://i.postimg.cc/htthvYNV/IMG-9677-2.jpg">
+        <br>
+        <button onclick="correct1()">At Nishad's House ❤️</button>
+        <button onclick="wrong()">Alloaa farmhouse 😒</button>
+    </div>
+
+    <div class="quiz-box hidden" id="quiz2">
+        <h3>Who said "I love you" first? 😌</h3>
+        <img src="https://i.postimg.cc/hPbK90Vs/IMG20241008211352-2.jpg">
+        <br>
+        <button onclick="correct2()">Nishad Nayak 💕</button>
+        <button onclick="wrong()">Keyuri 😅</button>
+    </div>
+
+    <div class="quiz-box hidden" id="finalMessage">
+        <h2>Perfect Score! 💖</h2>
+        <p>
+        More drum beats, more late-night talks,
+        more laughter, more everything —
+        and every Valentine together. ❤️
+        </p>
+    </div>
+</div>
+
+
+<script>
+function moveButton(){
+    var x=Math.random()*(window.innerWidth-100);
+    var y=Math.random()*(window.innerHeight-50);
+    document.getElementById("no").style.left=x+"px";
+    document.getElementById("no").style.top=y+"px";
+}
+
+function celebrate(){
+    document.getElementById("main").style.display="none";
+    document.getElementById("afterYes").classList.remove("hidden");
+
+    // Play song after user interaction
+    document.getElementById("loveSong").play();
+
+    createHearts();
+}
+
+function correct1(){
+    alert("Correct 😍 You remember everything!");
+    document.getElementById("quiz2").classList.remove("hidden");
+}
+
+function correct2(){
+    alert("Love Genius 💞");
+    document.getElementById("finalMessage").classList.remove("hidden");
+}
+
+function wrong(){
+    alert("Wrong answer 😜 Try again!");
+}
+
+function createHearts(){
+    setInterval(function(){
+        var heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*100+"vw";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),4000);
+    },300);
+}
+</script>
+
+</body>
+</html>
