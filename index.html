@@ -9,9 +9,10 @@ body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
   text-align:center;
-  background:black;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffdde1);
   color:white;
-  overflow-x:hidden;
+  overflow:hidden;
+  position:relative;
 }
 
 .section{
@@ -30,6 +31,7 @@ button{
   border-radius:25px;
   cursor:pointer;
   margin:10px;
+  transition:0.3s;
 }
 
 .yes{
@@ -60,7 +62,7 @@ img{
   width:250px;
   border-radius:15px;
   margin:10px;
-  box-shadow:0 0 20px pink;
+  box-shadow:0 0 20px rgba(255,0,128,0.6);
 }
 
 .fade{
@@ -70,6 +72,26 @@ img{
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px);}
   to{opacity:1; transform:translateY(0);}
+}
+
+/* Floating Hearts */
+.heart{
+  position:absolute;
+  color:#ff2e63;
+  animation:floatUp linear infinite;
+  opacity:0.8;
+  pointer-events:none;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(100vh) scale(0.5);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-10vh) scale(1.2);
+    opacity:0;
+  }
 }
 </style>
 </head>
@@ -83,16 +105,16 @@ img{
 <!-- INTRO -->
 <div class="section" id="intro">
   <h1>Hi Nishad ❤️</h1>
-  <p>Click anywhere to begin something special...</p>
+  <h2>Click anywhere to begin something special...</h2>
 </div>
 
 <!-- QUIZ -->
 <div class="section hidden" id="quiz">
-  <h2>Answer correctly to unlock memories 💌</h2>
+  <h2>Answer correctly to unlock our memories 💌</h2>
 
   <p>Where was our first date?</p>
   <button onclick="checkAnswer(this,'correct')">Nishad's House</button>
-  <button onclick="checkAnswer(this,'wrong')">Alloaa farmhouse</button>
+  <button onclick="checkAnswer(this,'wrong')">Alloaa Farmhouse</button>
 
   <p>Who said I love you first?</p>
   <button onclick="checkAnswer(this,'correct')">Nishad Nayak</button>
@@ -126,6 +148,7 @@ img{
 
 let correctCount = 0;
 
+/* Start on first click */
 document.body.addEventListener("click", function(){
   document.getElementById("loveSong").play();
   document.getElementById("intro").classList.add("hidden");
@@ -150,6 +173,7 @@ function unlockGallery(){
   document.getElementById("quiz").classList.add("hidden");
   let gallery = document.getElementById("gallery");
   gallery.classList.remove("hidden");
+
   setTimeout(()=>{
     gallery.classList.remove("locked");
     gallery.classList.add("unlocked","fade");
@@ -161,21 +185,40 @@ function unlockGallery(){
   },4000);
 }
 
+/* Moving NO button */
 let noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("mouseover", function(){
   noBtn.style.top = Math.random()*150+"px";
   noBtn.style.left = Math.random()*200+"px";
 });
 
+/* YES ending */
 function sayYes(){
   document.body.innerHTML = `
     <div class="section">
       <h1>I knew it 😌❤️</h1>
       <h2>Tumhare hi rahenge hum ♾️</h2>
-      <p>Forever yours, Nishad.</p>
+      <h2>Happy Valentine's Day 💖</h2>
     </div>
   `;
 }
+
+/* Floating Hearts Generator */
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random()*3) + "s";
+  heart.style.fontSize = (15 + Math.random()*25) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 300);
 
 </script>
 
