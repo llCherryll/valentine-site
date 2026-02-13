@@ -2,174 +2,181 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nishad ❤️ Keyuri</title>
+<title>For Nishad ❤️</title>
 
 <style>
 body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    text-align:center;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
-    color:white;
-    overflow-x:hidden;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  text-align:center;
+  background:black;
+  color:white;
+  overflow-x:hidden;
 }
 
-.container{
-    padding:40px 20px;
-}
-
-h1{font-size:34px;}
-p{font-size:18px; max-width:90%; margin:auto;}
-
-img{
-    width:230px;
-    border-radius:20px;
-    margin:12px;
-    box-shadow:0 0 20px rgba(0,0,0,0.3);
+.section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
 }
 
 button{
-    padding:12px 28px;
-    font-size:18px;
-    margin:12px;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-    transition:0.3s;
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin:10px;
 }
 
-#yes{background:#ff2e63;color:white;}
-#yes:hover{transform:scale(1.1);}
-#no{background:#444;color:white;position:absolute;}
-
-.hidden{display:none;}
-
-.quiz-box{
-    background:rgba(255,255,255,0.15);
-    padding:20px;
-    border-radius:20px;
-    margin-top:25px;
+.yes{
+  background:#ff2e63;
+  color:white;
 }
 
-@keyframes floatHearts{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-600px);opacity:0;}
+.no{
+  background:white;
+  color:black;
+  position:absolute;
 }
 
-.heart{
-    position:fixed;
-    bottom:0;
-    font-size:22px;
-    animation:floatHearts 4s linear infinite;
+.hidden{
+  display:none;
+}
+
+.locked img{
+  filter:blur(15px);
+  transition:1s;
+}
+
+.unlocked img{
+  filter:blur(0);
+}
+
+img{
+  width:250px;
+  border-radius:15px;
+  margin:10px;
+  box-shadow:0 0 20px pink;
+}
+
+.fade{
+  animation:fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="loveSong" autoplay loop muted>
-<source src="https://files.catbox.moe/32kkel.mp3" type="audio/mpeg">
+<audio id="loveSong" loop>
+  <source src="https://files.catbox.moe/32kkel.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container" id="main">
-
-<h1>Nishad Nayak 💖</h1>
-
-<p>
-From the moment you walked into my life, everything changed.
-You sell boats like a boss, play drums like a rockstar,
-and somehow still manage to be the safest place in my world.
-
-And yes… you were the one who said "I love you" first. 😌❤️
-
-So officially, dramatically, and wholeheartedly…
-Will you be my Valentine?
-</p>
-
-<img src="https://i.postimg.cc/FsPB5d48/IMG-20260110-WA0051.jpg">
-<img src="https://i.postimg.cc/g0MJ3KF3/IMG-20241227-WA0020.jpg">
-
-<br>
-
-<button id="yes" onclick="celebrate()">Yes 💘</button>
-<button id="no" onmouseover="moveButton()">No 😅</button>
-
+<!-- INTRO -->
+<div class="section" id="intro">
+  <h1>Hi Nishad ❤️</h1>
+  <p>Click anywhere to begin something special...</p>
 </div>
 
+<!-- QUIZ -->
+<div class="section hidden" id="quiz">
+  <h2>Answer correctly to unlock memories 💌</h2>
 
-<div id="afterYes" class="hidden">
-    <h1>She Said Yes 💍💞</h1>
-    <p>Now let’s see if you remember our love story properly 😏</p>
+  <p>Where was our first date?</p>
+  <button onclick="checkAnswer(this,'correct')">Nishad's House</button>
+  <button onclick="checkAnswer(this,'wrong')">Alloaa farmhouse</button>
 
-    <div class="quiz-box">
-        <h3>Where was our first proper date? 🥰</h3>
-        <img src="https://i.postimg.cc/htthvYNV/IMG-9677-2.jpg">
-        <br>
-        <button onclick="correct1()">At Nishad's House ❤️</button>
-        <button onclick="wrong()">Alloaa farmhouse 😒</button>
-    </div>
+  <p>Who said I love you first?</p>
+  <button onclick="checkAnswer(this,'correct')">Nishad Nayak</button>
+  <button onclick="checkAnswer(this,'wrong')">You</button>
 
-    <div class="quiz-box hidden" id="quiz2">
-        <h3>Who said "I love you" first? 😌</h3>
-        <img src="https://i.postimg.cc/hPbK90Vs/IMG20241008211352-2.jpg">
-        <br>
-        <button onclick="correct2()">Nishad Nayak 💕</button>
-        <button onclick="wrong()">Keyuri 😅</button>
-    </div>
-
-    <div class="quiz-box hidden" id="finalMessage">
-        <h2>Perfect Score! 💖</h2>
-        <p>
-        More drum beats, more late-night talks,
-        more laughter, more everything —
-        and every Valentine together. ❤️
-        </p>
-    </div>
+  <p>Our song?</p>
+  <button onclick="checkAnswer(this,'correct')">Tumhare Hi Rahenge Hum</button>
+  <button onclick="checkAnswer(this,'wrong')">Some Random Song</button>
 </div>
 
+<!-- GALLERY -->
+<div class="section hidden locked" id="gallery">
+  <h2>Our Beautiful Memories 💖</h2>
+  <img src="https://i.postimg.cc/FsPB5d48/IMG-20260110-WA0051.jpg">
+  <img src="https://i.postimg.cc/g0MJ3KF3/IMG-20241227-WA0020.jpg">
+  <img src="https://i.postimg.cc/htthvYNV/IMG-9677-2.jpg">
+  <img src="https://i.postimg.cc/hPbK90Vs/IMG20241008211352-2.jpg">
+</div>
+
+<!-- FINAL PROPOSAL -->
+<div class="section hidden" id="proposal">
+  <h1>So Nishad… ❤️</h1>
+  <h2>Will you be my Valentine?</h2>
+  <div style="position:relative; height:200px;">
+    <button class="yes" onclick="sayYes()">YES 💖</button>
+    <button class="no" id="noBtn">NO</button>
+  </div>
+</div>
 
 <script>
-function moveButton(){
-    var x=Math.random()*(window.innerWidth-100);
-    var y=Math.random()*(window.innerHeight-50);
-    document.getElementById("no").style.left=x+"px";
-    document.getElementById("no").style.top=y+"px";
+
+let correctCount = 0;
+
+document.body.addEventListener("click", function(){
+  document.getElementById("loveSong").play();
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+}, { once:true });
+
+function checkAnswer(button,type){
+  if(type === "correct"){
+    correctCount++;
+    button.style.background="green";
+    button.disabled=true;
+  }else{
+    button.style.background="red";
+  }
+
+  if(correctCount === 3){
+    unlockGallery();
+  }
 }
 
-function celebrate(){
-    document.getElementById("main").style.display="none";
-    document.getElementById("afterYes").classList.remove("hidden");
+function unlockGallery(){
+  document.getElementById("quiz").classList.add("hidden");
+  let gallery = document.getElementById("gallery");
+  gallery.classList.remove("hidden");
+  setTimeout(()=>{
+    gallery.classList.remove("locked");
+    gallery.classList.add("unlocked","fade");
+  },800);
 
-    // Play song after user interaction
-    document.getElementById("loveSong").play();
-
-    createHearts();
+  setTimeout(()=>{
+    gallery.classList.add("hidden");
+    document.getElementById("proposal").classList.remove("hidden");
+  },4000);
 }
 
-function correct1(){
-    alert("Correct 😍 You remember everything!");
-    document.getElementById("quiz2").classList.remove("hidden");
+let noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function(){
+  noBtn.style.top = Math.random()*150+"px";
+  noBtn.style.left = Math.random()*200+"px";
+});
+
+function sayYes(){
+  document.body.innerHTML = `
+    <div class="section">
+      <h1>I knew it 😌❤️</h1>
+      <h2>Tumhare hi rahenge hum ♾️</h2>
+      <p>Forever yours, Nishad.</p>
+    </div>
+  `;
 }
 
-function correct2(){
-    alert("Love Genius 💞");
-    document.getElementById("finalMessage").classList.remove("hidden");
-}
-
-function wrong(){
-    alert("Wrong answer 😜 Try again!");
-}
-
-function createHearts(){
-    setInterval(function(){
-        var heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="💖";
-        heart.style.left=Math.random()*100+"vw";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),4000);
-    },300);
-}
 </script>
 
 </body>
